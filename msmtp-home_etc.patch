@@ -1,11 +1,12 @@
 --- msmtp-1.0.0/src/paths.c.org	2004-04-24 01:07:36.000000000 +0000
 +++ msmtp-1.0.0/src/paths.c	2004-04-25 07:43:41.835122632 +0000
-@@ -106,6 +106,8 @@
- #else /* UNIX or DJGPP */
+@@ -123,7 +123,8 @@
+ #elif defined DJGPP
      
      char *home;
+-    
 +    home=getenv("HOME_ETC");
 +    if (!home)
      if (!(home = getenv("HOME")))
      {
- 	return NULL;
+ 	return merror(PATHS_ENOHOME, "no environment variable HOME");
