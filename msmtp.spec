@@ -4,7 +4,7 @@ Version:	0.3.0
 Release:	0.1
 License:	GPL
 Group:		Networking/Daemons
-Source0:	http://dl.sourceforge.net/sourceforge/%name/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 # Source0-md5:	08d74918c252a540a640c27729e0cd9c
 BuildRequires:	openssl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
