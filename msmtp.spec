@@ -1,11 +1,11 @@
 Summary:	SMTP "plugin" for MUAs
 Name:		msmtp
-Version:	0.3.0
+Version:	0.3.1
 Release:	0.1
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
-# Source0-md5:	08d74918c252a540a640c27729e0cd9c
+# Source0-md5:	ca7becb55bcc8177d75f1912f5668ff5
 BuildRequires:	openssl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
