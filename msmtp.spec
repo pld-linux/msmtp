@@ -5,7 +5,7 @@ Version:	1.3.9
 Release:	1
 License:	GPL
 Group:		Networking/Daemons
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/msmtp/%{name}-%{version}.tar.bz2
 # Source0-md5:	8e941785730c1ea1ee7fc9a65da41339
 Patch0:		%{name}-home_etc.patch
 URL:		http://msmtp.sourceforge.net/
@@ -67,8 +67,7 @@ konfiguracyjnym).
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
 
-%{__make} \
-	install\
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
