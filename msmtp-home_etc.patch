@@ -1,0 +1,14 @@
+diff -Nru msmtp-0.6.2.orig/src/msmtp.c msmtp-0.6.2/src/msmtp.c
+--- msmtp-0.6.2.orig/src/msmtp.c	2003-11-13 18:38:17.000000000 +0100
++++ msmtp-0.6.2/src/msmtp.c	2003-11-19 14:25:31.000000000 +0100
+@@ -193,7 +193,9 @@
+     /* read the configuration file */
+     if (!conffile)
+     {
+-	if (!(p = getenv("HOME")))
++      p = getenv("HOME_ETC");
++      if (!p) p = getenv("HOME");			
++	if (!p)
+ 	{
+ 	   add_error_line("no environment variable HOME");
+ 	   print_error_lines(stderr);
