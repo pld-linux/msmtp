@@ -8,6 +8,8 @@ Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 # Source0-md5:	4e3145156fe9ca36df833f5953a21c9b
 URL:		http://msmtp.sourceforge.net/
+BuildRequires:	autoconf >= 2.50
+BuildRequires:	automake
 BuildRequires:	openssl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -48,15 +50,16 @@ konfiguracyjnym).
 %setup -q
 
 %build
-%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
-%{__make} \
-        CC="%{__cc}" \
-        CFLAGS="%{rpmcflags}"
+# could use gnutls instead (but is not ready for current libgcrypt)
+# disable gsasl for now (see README.gsasl)
+%configure \
+	--with-ssl=openssl \
+	--disable-gsasl
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
