@@ -1,12 +1,11 @@
---- msmtp-1.0.0/src/paths.c.org	2004-04-24 01:07:36.000000000 +0000
-+++ msmtp-1.0.0/src/paths.c	2004-04-25 07:43:41.835122632 +0000
-@@ -123,7 +123,8 @@
- #elif defined DJGPP
-     
+--- msmtp-1.2.4/src/paths.c.orig	2004-12-29 16:47:28.728920536 +0100
++++ msmtp-1.2.4/src/paths.c	2004-12-29 16:48:06.604162624 +0100
+@@ -138,6 +138,8 @@
      char *home;
--    
-+    home=getenv("HOME_ETC");
+     struct passwd *pw;
+     
++    home = getenv("HOME_ETC");
 +    if (!home)
      if (!(home = getenv("HOME")))
      {
- 	return merror(PATHS_ENOHOME, "no environment variable HOME");
+ 	pw = getpwuid(getuid());
