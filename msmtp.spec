@@ -1,12 +1,12 @@
 Summary:	SMTP "plugin" for MUAs
 Summary(pl):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
-Version:	0.6.1
+Version:	0.6.2
 Release:	1
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-# Source0-md5:	9cbe03c8f63d793fae9c3d79a20a4a25
+# Source0-md5:	4e3145156fe9ca36df833f5953a21c9b
 URL:		http://msmtp.sourceforge.net/
 BuildRequires:	openssl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -48,6 +48,12 @@ konfiguracyjnym).
 %setup -q
 
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+%configure
 %{__make} \
         CC="%{__cc}" \
         CFLAGS="%{rpmcflags}"
@@ -56,14 +62,15 @@ konfiguracyjnym).
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
 
-install msmtp $RPM_BUILD_ROOT%{_bindir}/msmtp
-install msmtp.1 $RPM_BUILD_ROOT%{_mandir}/man1
+%{__make} \
+	install\
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README THANKS
+%doc AUTHORS ChangeLog README THANKS doc/msmtprc.example
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/msmtp*
