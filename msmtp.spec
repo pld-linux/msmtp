@@ -73,18 +73,18 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
 %find_lang %{name}
 
 %post
-fix-info-dir
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files   
+%files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README THANKS doc/msmtprc-{system,user}.example
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/msmtp*
 #%lang(pl) %{_mandir}/pl/man1/msmtp*
 %{_infodir}/msmtp*
-%{_prefix}/share/info/dir.gz
+%{_datadir}/info/dir.gz
 #%lang(pl) %{_prefix}/share/locale/pl/LC_MESSAGES/msmtp.mo
-%lang(de) %{_prefix}/share/locale/de/LC_MESSAGES/msmtp.mo
+%lang(de) %{_datadir}/locale/de/LC_MESSAGES/msmtp.mo
