@@ -70,15 +70,21 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+%find_lang %{name}
+
+%post
+fix-info-dir
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files   
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README THANKS doc/msmtprc-{system,user}.example
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/msmtp*
+#%lang(pl) %{_mandir}/pl/man1/msmtp*
 %{_infodir}/msmtp*
 %{_prefix}/share/info/dir.gz
-%{_prefix}/share/locale/de/LC_MESSAGES/msmtp.mo
+#%lang(pl) %{_prefix}/share/locale/pl/LC_MESSAGES/msmtp.mo
+%lang(de) %{_prefix}/share/locale/de/LC_MESSAGES/msmtp.mo
