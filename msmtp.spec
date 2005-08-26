@@ -1,12 +1,12 @@
 Summary:	SMTP "plugin" for MUAs
 Summary(pl):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
-Version:	1.4.3
+Version:	1.4.4
 Release:	1
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/msmtp/%{name}-%{version}.tar.bz2
-# Source0-md5:	f6614490834ad3c2c15559bf38c2f694
+# Source0-md5:	34b31619a61462d9f2dd4f59720cf05e
 Patch0:		%{name}-home_etc.patch
 URL:		http://msmtp.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
@@ -33,7 +33,7 @@ Mutt that's just one additional line in the config file).
 
 %description -l pl
 msmtp to prosty program dzia³aj±cy jako "wtyczka SMTP" dla Mutta i
-prawdopodobnie innych klientów pocztowych (MUA - mail user agents).
+innych klientów pocztowych (MUA - mail user agents).
 Przekierowuje wiadomo¶ci do serwera SMTP (na przyk³ad providera
 darmowych kont e-mail), który je dostarcza. Mo¿liwo¶ci obejmuj±:
 - obs³ugê SMTP AUTH - metod PLAIN, LOGIN i CRAM-MD5
@@ -46,7 +46,7 @@ darmowych kont e-mail), który je dostarcza. Mo¿liwo¶ci obejmuj±:
 
 Wystarczy przekazaæ klientowi pocztowemu, aby wywo³ywa³ msmtp zamiast
 /usr/sbin/sendmail (w Mutcie to po prostu dodatkowa linia w pliku
-konfiguracyjnym).
+konfiguracyjnym) lub zrobienie symlink-a do /usr/sbin/sendmail.
 
 %prep
 %setup -q
