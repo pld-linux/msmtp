@@ -46,7 +46,8 @@ darmowych kont e-mail), który je dostarcza. Mo¿liwo¶ci obejmuj±:
 
 Wystarczy przekazaæ klientowi pocztowemu, aby wywo³ywa³ msmtp zamiast
 /usr/sbin/sendmail (w Mutcie to po prostu dodatkowa linia w pliku
-konfiguracyjnym) lub zrobienie symlink-a do /usr/sbin/sendmail.
+konfiguracyjnym) lub zrobienie dowi±zania symbolicznego do
+/usr/sbin/sendmail.
 
 %prep
 %setup -q
