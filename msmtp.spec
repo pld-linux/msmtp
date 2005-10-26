@@ -2,17 +2,20 @@ Summary:	SMTP "plugin" for MUAs
 Summary(pl):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
 Version:	1.4.4
-Release:	2
+Release:	2.2
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/msmtp/%{name}-%{version}.tar.bz2
 # Source0-md5:	34b31619a61462d9f2dd4f59720cf05e
 Patch0:		%{name}-home_etc.patch
+Source1:	%{name}rc
 URL:		http://msmtp.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pkgconfig
+Provides:	smtpdaemon
+Obsoletes:	smtpdaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -67,14 +70,18 @@ konfiguracyjnym) lub zrobienie dowi±zania symbolicznego do
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_mandir}/man1,%{_prefix}/lib,%{_sysconfdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_infodir}/dir
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/msmtprc
+ln -s %{_bindir}/%{name} $RPM_BUILD_ROOT%{_prefix}/lib/sendmail
+ln -s %{_bindir}/%{name} $RPM_BUILD_ROOT%{_sbindir}/sendmail
 
 %find_lang %{name}
+
+rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -88,6 +95,9 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README THANKS doc/msmtprc-{system,user}.example
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man1/msmtp*
 %{_infodir}/msmtp*
+%{_prefix}/lib/sendmail
