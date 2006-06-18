@@ -1,18 +1,18 @@
 Summary:	SMTP "plugin" for MUAs
 Summary(pl):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
-Version:	1.4.5
+Version:	1.4.6
 Release:	1
 License:	GPL v2
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/msmtp/%{name}-%{version}.tar.bz2
-# Source0-md5:	9713e821bf73e8f4a05d599c6ab01b6a
+# Source0-md5:	0f76ca980151db88d5c26dda995c8701
 Patch0:		%{name}-home_etc.patch
 Source1:	%{name}rc
 URL:		http://msmtp.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
-BuildRequires:	openssl-devel >= 0.9.7d
+BuildRequires:	gsasl-devel >= 0.2.4
 BuildRequires:	pkgconfig
 Provides:	smtpdaemon
 Obsoletes:	smtpdaemon
@@ -23,8 +23,9 @@ msmtp is a simple program that works as an "SMTP plugin" for Mutt and
 probably other MUAs (mail user agents). It forwards mails to an SMTP
 server (for example at a free mail provider) which does the delivery.
 Features include:
-- SMTP AUTH methods PLAIN, LOGIN and CRAM-MD5
+- PLAIN, LOGIN, CRAM-MD5, GSSAPI, DIGEST-MD5 and NTLM authentications
 - TLS encrypted connections
+- Internationalized Domain Names (IDN) support
 - IPv6 support
 - robustness
 - detailed error messages if something goes wrong (including the full
@@ -39,7 +40,8 @@ msmtp to prosty program dzia³aj±cy jako "wtyczka SMTP" dla Mutta i
 innych klientów pocztowych (MUA - mail user agents).
 Przekierowuje wiadomo¶ci do serwera SMTP (na przyk³ad providera
 darmowych kont e-mail), który je dostarcza. Mo¿liwo¶ci obejmuj±:
-- obs³ugê SMTP AUTH - metod PLAIN, LOGIN i CRAM-MD5
+- uwierzytelnianie PLAIN, LOGIN, CRAM-MD5, GSSAPI, DIGEST-MD5 i NTLM
+- obs³ugê Internationalized Domain Names (IDN)
 - szyfrowane po³±czenia TLS
 - obs³ugê IPv6
 - szczegó³owe komunikaty b³êdów w przypadku niepowodzenia (w³±cznie z
@@ -61,11 +63,7 @@ konfiguracyjnym) lub zrobienie dowi±zania symbolicznego do
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-# could use gnutls instead (but is not ready for current libgcrypt)
-# disable gsasl for now (see README.gsasl)
-%configure \
-	--with-ssl=openssl \
-	--disable-gsasl
+%configure
 %{__make}
 
 %install
