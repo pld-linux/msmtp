@@ -1,17 +1,6 @@
---- msmtp-1.4.4/src/os_env.c.orig	2005-09-20 18:44:17.000000000 +0200
-+++ msmtp-1.4.4/src/os_env.c	2005-09-20 18:46:28.000000000 +0200
-@@ -257,7 +257,9 @@
-     
-     char *home;
-     
--    if ((home = getenv("HOME")))
-+    home = getenv("HOME_ETC");
-+    if (home == NULL) home = getenv("HOME");
-+    if (home != NULL)
-     {
- 	home = xstrdup(home);
-     }
-@@ -273,7 +275,9 @@
+--- msmtp-1.4.7/src/tools.c.orig	2006-07-04 08:38:27.000000000 +0200
++++ msmtp-1.4.7/src/tools.c	2006-08-21 14:46:04.764737250 +0200
+@@ -269,7 +269,9 @@
      char *home;
      struct passwd *pw;
      
