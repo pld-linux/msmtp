@@ -55,7 +55,7 @@ konfiguracyjnym) lub zrobienie dowi±zania symbolicznego do
 
 %package sendmail
 Summary:	msmtp sendmail compatible wrapper
-Summary(pl):	msmtp - dowi±zania symboliczne do sendmail'a
+Summary(pl):	msmtp - dowi±zania symboliczne do sendmaila
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Provides:	/usr/lib/sendmail
