@@ -2,7 +2,7 @@ Summary:	SMTP "plugin" for MUAs
 Summary(pl):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
 Version:	1.4.7
-Release:	1
+Release:	2	
 License:	GPL v2
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/msmtp/%{name}-%{version}.tar.bz2
@@ -15,8 +15,6 @@ BuildRequires:	automake
 BuildRequires:	gnutls-devel >= 1.2.0
 BuildRequires:	gsasl-devel
 BuildRequires:	pkgconfig
-Provides:	smtpdaemon
-Obsoletes:	smtpdaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -55,6 +53,23 @@ Wystarczy przekazaæ klientowi pocztowemu, aby wywo³ywa³ msmtp zamiast
 konfiguracyjnym) lub zrobienie dowi±zania symbolicznego do
 /usr/sbin/sendmail.
 
+%package sendmail
+Summary:	msmtp - sendmail symlinks
+Summary(pl):	msmtp - dowi±zania symboliczne do sendmail'a
+Group:		Networking/Daemons
+# Should be replaced with sth like P/O sendmail-wrapper
+Provides:	smtpdaemon
+Obsoletes:	smtpdaemon
+# Provides: sendmail-wrapper
+# Obsoletes: sendmail-wrapper
+Requires:	%{name} = %{version}-%{release}
+
+%description sendmail
+msmtp sendmail symlinks.
+
+%description -l pl sendmail
+Dowi±zania symboliczne msmtp do sendmaila.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -69,13 +84,13 @@ konfiguracyjnym) lub zrobienie dowi±zania symbolicznego do
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_mandir}/man1,%{_prefix}/lib,%{_sysconfdir}}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_prefix}/lib,%{_sysconfdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/msmtprc
-ln -s %{_bindir}/%{name} $RPM_BUILD_ROOT%{_prefix}/lib/sendmail
+ln -s %{_bindir}/%{name} $RPM_BUILD_ROOT/usr/lib/sendmail
 ln -s %{_bindir}/%{name} $RPM_BUILD_ROOT%{_sbindir}/sendmail
 
 %find_lang %{name}
@@ -94,9 +109,12 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README THANKS doc/msmtprc-{system,user}.example
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man1/msmtp*
 %{_infodir}/msmtp*
-%{_prefix}/lib/sendmail
+
+%files sendmail
+%defattr(644,root,root,755)
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
+%attr(755,root,root) %{_sbindir}/*
+/usr/lib/sendmail
