@@ -1,0 +1,1 @@
+- don't use %{_prefix} for /usr/lib/sendmail (for previous commit)
