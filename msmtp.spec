@@ -2,7 +2,7 @@ Summary:	SMTP "plugin" for MUAs
 Summary(pl):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
 Version:	1.4.7
-Release:	2	
+Release:	2
 License:	GPL v2
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/msmtp/%{name}-%{version}.tar.bz2
@@ -36,9 +36,9 @@ Mutt that's just one additional line in the config file).
 
 %description -l pl
 msmtp to prosty program dzia³aj±cy jako "wtyczka SMTP" dla Mutta i
-innych klientów pocztowych (MUA - mail user agents).
-Przekierowuje wiadomo¶ci do serwera SMTP (na przyk³ad providera
-darmowych kont e-mail), który je dostarcza. Mo¿liwo¶ci obejmuj±:
+innych klientów pocztowych (MUA - mail user agents). Przekierowuje
+wiadomo¶ci do serwera SMTP (na przyk³ad providera darmowych kont
+e-mail), który je dostarcza. Mo¿liwo¶ci obejmuj±:
 - uwierzytelnianie PLAIN, LOGIN, CRAM-MD5, GSSAPI, DIGEST-MD5 i NTLM
 - obs³ugê Internationalized Domain Names (IDN)
 - szyfrowane po³±czenia TLS
@@ -54,20 +54,17 @@ konfiguracyjnym) lub zrobienie dowi±zania symbolicznego do
 /usr/sbin/sendmail.
 
 %package sendmail
-Summary:	msmtp - sendmail symlinks
+Summary:	msmtp sendmail compatible wrapper
 Summary(pl):	msmtp - dowi±zania symboliczne do sendmail'a
 Group:		Networking/Daemons
-# Should be replaced with sth like P/O sendmail-wrapper
-Provides:	smtpdaemon
-Obsoletes:	smtpdaemon
-# Provides: sendmail-wrapper
-# Obsoletes: sendmail-wrapper
 Requires:	%{name} = %{version}-%{release}
+Provides:	/usr/lib/sendmail
+Obsoletes:	/usr/lib/sendmail
 
 %description sendmail
-msmtp sendmail symlinks.
+msmtp sendmail compatible wrapper.
 
-%description -l pl sendmail
+%description sendmail -l pl
 Dowi±zania symboliczne msmtp do sendmaila.
 
 %prep
