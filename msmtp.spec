@@ -50,8 +50,7 @@ e-mail), który je dostarcza. Mo¿liwo¶ci obejmuj±:
 
 Wystarczy przekazaæ klientowi pocztowemu, aby wywo³ywa³ msmtp zamiast
 /usr/sbin/sendmail (w Mutcie to po prostu dodatkowa linia w pliku
-konfiguracyjnym) lub zrobienie dowi±zania symbolicznego do
-/usr/sbin/sendmail.
+konfiguracyjnym).
 
 %package sendmail
 Summary:	msmtp sendmail compatible wrapper
@@ -81,7 +80,7 @@ Dowi±zania symboliczne msmtp do sendmaila.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_prefix}/lib,%{_sysconfdir}}
+install -d $RPM_BUILD_ROOT{%{_sbindir},/usr/lib,%{_sysconfdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
