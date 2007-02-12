@@ -1,5 +1,5 @@
 Summary:	SMTP "plugin" for MUAs
-Summary(pl):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
+Summary(pl.UTF-8):   "Wtyczka" SMTP dla klientÃ³w pocztowych (MUA)
 Name:		msmtp
 Version:	1.4.10
 Release:	1
@@ -34,27 +34,27 @@ Features include:
 Simply tell your MUA to call msmtp instead of /usr/sbin/sendmail (with
 Mutt that's just one additional line in the config file).
 
-%description -l pl
-msmtp to prosty program dzia³aj±cy jako "wtyczka SMTP" dla Mutta i
-innych klientów pocztowych (MUA - mail user agents). Przekierowuje
-wiadomo¶ci do serwera SMTP (na przyk³ad providera darmowych kont
-e-mail), który je dostarcza. Mo¿liwo¶ci obejmuj±:
+%description -l pl.UTF-8
+msmtp to prosty program dziaÅ‚ajÄ…cy jako "wtyczka SMTP" dla Mutta i
+innych klientÃ³w pocztowych (MUA - mail user agents). Przekierowuje
+wiadomoÅ›ci do serwera SMTP (na przykÅ‚ad providera darmowych kont
+e-mail), ktÃ³ry je dostarcza. MoÅ¼liwoÅ›ci obejmujÄ…:
 - uwierzytelnianie PLAIN, LOGIN, CRAM-MD5, GSSAPI, DIGEST-MD5 i NTLM
-- obs³ugê Internationalized Domain Names (IDN)
-- szyfrowane po³±czenia TLS
-- obs³ugê IPv6
-- szczegó³owe komunikaty b³êdów w przypadku niepowodzenia (w³±cznie z
-  pe³n± odpowiedzi± serwera SMTP)
-- kody wyj¶cia kompatybilne z sendmailem (które rozumie wiêkszo¶æ
+- obsÅ‚ugÄ™ Internationalized Domain Names (IDN)
+- szyfrowane poÅ‚Ä…czenia TLS
+- obsÅ‚ugÄ™ IPv6
+- szczegÃ³Å‚owe komunikaty bÅ‚Ä™dÃ³w w przypadku niepowodzenia (wÅ‚Ä…cznie z
+  peÅ‚nÄ… odpowiedziÄ… serwera SMTP)
+- kody wyjÅ›cia kompatybilne z sendmailem (ktÃ³re rozumie wiÄ™kszoÅ›Ä‡
   MUA).
 
-Wystarczy przekazaæ klientowi pocztowemu, aby wywo³ywa³ msmtp zamiast
+Wystarczy przekazaÄ‡ klientowi pocztowemu, aby wywoÅ‚ywaÅ‚ msmtp zamiast
 /usr/sbin/sendmail (w Mutcie to po prostu dodatkowa linia w pliku
 konfiguracyjnym).
 
 %package sendmail
 Summary:	msmtp sendmail compatible wrapper
-Summary(pl):	msmtp - dowi±zania symboliczne do sendmaila
+Summary(pl.UTF-8):   msmtp - dowiÄ…zania symboliczne do sendmaila
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Provides:	/usr/lib/sendmail
@@ -63,8 +63,8 @@ Obsoletes:	/usr/lib/sendmail
 %description sendmail
 msmtp sendmail compatible wrapper.
 
-%description sendmail -l pl
-Dowi±zania symboliczne msmtp do sendmaila.
+%description sendmail -l pl.UTF-8
+DowiÄ…zania symboliczne msmtp do sendmaila.
 
 %prep
 %setup -q
