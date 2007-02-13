@@ -1,5 +1,5 @@
 Summary:	SMTP "plugin" for MUAs
-Summary(pl.UTF-8):   "Wtyczka" SMTP dla klientów pocztowych (MUA)
+Summary(pl.UTF-8):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
 Version:	1.4.10
 Release:	1
@@ -54,7 +54,7 @@ konfiguracyjnym).
 
 %package sendmail
 Summary:	msmtp sendmail compatible wrapper
-Summary(pl.UTF-8):   msmtp - dowiązania symboliczne do sendmaila
+Summary(pl.UTF-8):	msmtp - dowiązania symboliczne do sendmaila
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Provides:	/usr/lib/sendmail
