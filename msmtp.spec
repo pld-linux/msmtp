@@ -2,7 +2,7 @@ Summary:	SMTP "plugin" for MUAs
 Summary(pl.UTF-8):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
 Version:	1.4.12
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/msmtp/%{name}-%{version}.tar.bz2
@@ -57,6 +57,7 @@ Summary:	msmtp sendmail compatible wrapper
 Summary(pl.UTF-8):	msmtp - dowiązania symboliczne do sendmaila
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
+Obsoletes:	/usr/lib/sendmail
 
 %description sendmail
 msmtp sendmail compatible wrapper.
