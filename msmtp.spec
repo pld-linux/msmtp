@@ -1,12 +1,12 @@
 Summary:	SMTP "plugin" for MUAs
 Summary(pl.UTF-8):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
-Version:	1.4.12
-Release:	5
-License:	GPL v2
+Version:	1.4.13
+Release:	1
+License:	GPL v3
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/msmtp/%{name}-%{version}.tar.bz2
-# Source0-md5:	ba5b61d5f7667d288f1cfadccfff8ac5
+# Source0-md5:	021a91d7145100ad0f00c912c8104e03
 Patch0:		%{name}-home_etc.patch
 Source1:	%{name}rc
 URL:		http://msmtp.sourceforge.net/
@@ -85,6 +85,7 @@ ln -s %{_bindir}/%{name} $RPM_BUILD_ROOT%{_sbindir}/sendmail
 %find_lang %{name}
 
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
+rm -f scripts/Makefile*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -97,7 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README THANKS doc/msmtprc-{system,user}.example
+%doc AUTHORS ChangeLog README THANKS doc/msmtprc-{system,user}.example scripts
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/msmtp*
 %{_infodir}/msmtp*
