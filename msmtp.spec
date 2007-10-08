@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
 Version:	1.4.13
 Release:	1
-License:	GPL v3
+License:	GPL v3+
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/msmtp/%{name}-%{version}.tar.bz2
 # Source0-md5:	021a91d7145100ad0f00c912c8104e03
