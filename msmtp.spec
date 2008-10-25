@@ -4,7 +4,7 @@ Name:		msmtp
 Version:	1.4.16
 Release:	1
 License:	GPL v3+
-Group:		Networking/Daemons
+Group:		Networking/Utilities
 Source0:	http://dl.sourceforge.net/msmtp/%{name}-%{version}.tar.bz2
 # Source0-md5:	77a333601e9de03f695539498e678cc2
 Patch0:		%{name}-home_etc.patch
