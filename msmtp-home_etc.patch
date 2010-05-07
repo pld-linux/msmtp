@@ -3,11 +3,11 @@
 @@ -269,7 +269,9 @@
      char *home;
      struct passwd *pw;
-     
+ 
 -    if ((home = getenv("HOME")))
 +    home = getenv("HOME_ETC");
 +    if (home == NULL) home = getenv("HOME");
 +    if (home != NULL)
      {
- 	home = xstrdup(home);
+         home = xstrdup(home);
      }
