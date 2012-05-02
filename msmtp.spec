@@ -5,7 +5,7 @@ Version:	1.4.28
 Release:	1
 License:	GPL v3+
 Group:		Networking/Utilities
-Source0:	http://dl.sourceforge.net/msmtp/%{name}-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/msmtp/%{name}-%{version}.tar.bz2
 # Source0-md5:	14740478dc9d1f52ec97a415e3373fc7
 Patch0:		%{name}-home_etc.patch
 Source1:	%{name}rc
@@ -73,13 +73,13 @@ Dowiązania symboliczne msmtp do sendmaila.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},/usr/lib,%{_sysconfdir}}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_prefix}/lib,%{_sysconfdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/msmtprc
-ln -s %{_bindir}/%{name} $RPM_BUILD_ROOT/usr/lib/sendmail
+ln -s %{_bindir}/%{name} $RPM_BUILD_ROOT%{_prefix}/lib/sendmail
 ln -s %{_bindir}/%{name} $RPM_BUILD_ROOT%{_sbindir}/sendmail
 
 %find_lang %{name}
@@ -107,4 +107,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
 %attr(755,root,root) %{_sbindir}/*
-/usr/lib/sendmail
+%{_prefix}/lib/sendmail
