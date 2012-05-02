@@ -73,13 +73,13 @@ Dowiązania symboliczne msmtp do sendmaila.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_prefix}/lib,%{_sysconfdir}}
+install -d $RPM_BUILD_ROOT{%{_sbindir},/usr/lib,%{_sysconfdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/msmtprc
-ln -s %{_bindir}/%{name} $RPM_BUILD_ROOT%{_prefix}/lib/sendmail
+ln -s %{_bindir}/%{name} $RPM_BUILD_ROOT/usr/lib/sendmail
 ln -s %{_bindir}/%{name} $RPM_BUILD_ROOT%{_sbindir}/sendmail
 
 %find_lang %{name}
@@ -107,4 +107,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
 %attr(755,root,root) %{_sbindir}/*
-%{_prefix}/lib/sendmail
+/usr/lib/sendmail
