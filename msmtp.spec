@@ -1,17 +1,22 @@
 Summary:	SMTP "plugin" for MUAs
 Summary(pl.UTF-8):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
-Version:	1.4.32
+Version:	1.6.0
 Release:	1
 License:	GPL v3+
 Group:		Networking/Utilities
-Source0:	http://downloads.sourceforge.net/msmtp/%{name}-%{version}.tar.bz2
-# Source0-md5:	aa60e22211118f222470439cea60f795
+Source0:	http://downloads.sourceforge.net/msmtp/%{name}-%{version}.tar.xz
+# Source0-md5:	1c166853b63c02ae2ab56b50f1aae57b
 Patch0:		%{name}-home_etc.patch
 Source1:	%{name}rc
 URL:		http://msmtp.sourceforge.net/
+BuildRequires:	autoconf
+BuildRequires:	automake >= 1:1.11.1
+BuildRequires:	gettext-tools
 BuildRequires:	gnutls-devel >= 1.2.0
 BuildRequires:	gsasl-devel
+BuildRequires:	libidn-devel
+BuildRequires:	libsecret-devel
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -68,7 +73,17 @@ Dowiązania symboliczne msmtp do sendmaila.
 %patch0 -p1
 
 %build
-%configure
+%{__gettextize}
+%{__aclocal}
+%{__autoheader}
+%{__automake}
+%{__autoconf}
+%configure \
+	--disable-silent-rules \
+	--with-libgsasl \
+	--with-libidn \
+	--with-libsecret \
+	--with-ssl=gnutls
 %{__make}
 
 %install
