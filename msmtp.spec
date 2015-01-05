@@ -1,12 +1,12 @@
 Summary:	SMTP "plugin" for MUAs
 Summary(pl.UTF-8):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
-Version:	1.6.0
+Version:	1.6.1
 Release:	1
 License:	GPL v3+
 Group:		Networking/Utilities
 Source0:	http://downloads.sourceforge.net/msmtp/%{name}-%{version}.tar.xz
-# Source0-md5:	1c166853b63c02ae2ab56b50f1aae57b
+# Source0-md5:	6ebba4809bbc665b8a665a018d1a5ee1
 Patch0:		%{name}-home_etc.patch
 Source1:	%{name}rc
 URL:		http://msmtp.sourceforge.net/
