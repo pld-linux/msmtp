@@ -1,12 +1,12 @@
 Summary:	SMTP "plugin" for MUAs
 Summary(pl.UTF-8):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
-Version:	1.8.14
+Version:	1.8.15
 Release:	1
 License:	GPL v3+
 Group:		Networking/Utilities
 Source0:	https://marlam.de/msmtp/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	a1a35dd7cc053fca143a6886a1dea635
+# Source0-md5:	45eddbc0e93d7eb77c12ab75b5e1e6be
 Patch0:		%{name}-home_etc.patch
 Source1:	%{name}rc
 URL:		https://marlam.de/msmtp/
@@ -18,6 +18,8 @@ BuildRequires:	gsasl-devel
 BuildRequires:	libidn-devel
 BuildRequires:	libsecret-devel
 BuildRequires:	pkgconfig
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -60,7 +62,6 @@ Summary:	msmtp sendmail compatible wrapper
 Summary(pl.UTF-8):	msmtp - dowiązania symboliczne do sendmaila
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
-Obsoletes:	/usr/lib/sendmail
 
 %description sendmail
 msmtp sendmail compatible wrapper.
