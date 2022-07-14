@@ -2,23 +2,27 @@ Summary:	SMTP "plugin" for MUAs
 Summary(pl.UTF-8):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
 Version:	1.8.20
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Networking/Utilities
+#Source0Download: https://marlam.de/msmtp/download/
 Source0:	https://marlam.de/msmtp/releases/%{name}-%{version}.tar.xz
 # Source0-md5:	6fc0ce864d74992f6c6124c3611d15da
 Patch0:		%{name}-home_etc.patch
+Patch1:		%{name}-info.patch
 Source1:	%{name}rc
 URL:		https://marlam.de/msmtp/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11.1
 BuildRequires:	gettext-tools
-BuildRequires:	gnutls-devel >= 1.2.0
+# with AI_IDN support (or libidn2-devel)
+BuildRequires:	glibc-devel >= 6:2.4
+BuildRequires:	gnutls-devel >= 3.4
 BuildRequires:	gsasl-devel
-BuildRequires:	libidn-devel
 BuildRequires:	libsecret-devel
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	texinfo
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -72,6 +76,7 @@ Dowiązania symboliczne msmtp do sendmaila.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__gettextize}
@@ -114,13 +119,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README THANKS doc/msmtprc-{system,user}.example scripts
-%attr(755,root,root) %{_bindir}/*
-%{_mandir}/man1/msmtp*
-%{_infodir}/msmtp*
+%doc AUTHORS ChangeLog NEWS README THANKS doc/msmtprc-{system,user}.example scripts
+%attr(755,root,root) %{_bindir}/msmtp
+%attr(755,root,root) %{_bindir}/msmtpd
+%{_mandir}/man1/msmtp.1*
+%{_mandir}/man1/msmtpd.1*
+%{_infodir}/msmtp.info*
 
 %files sendmail
 %defattr(644,root,root,755)
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*
-%attr(755,root,root) %{_sbindir}/*
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/msmtprc
+%attr(755,root,root) %{_sbindir}/sendmail
 /usr/lib/sendmail
