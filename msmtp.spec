@@ -1,13 +1,13 @@
 Summary:	SMTP "plugin" for MUAs
 Summary(pl.UTF-8):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
-Version:	1.8.24
+Version:	1.8.25
 Release:	1
 License:	GPL v3+
 Group:		Networking/Utilities
 #Source0Download: https://marlam.de/msmtp/download/
 Source0:	https://marlam.de/msmtp/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	1291538d45aeb5e0b818400aa045dc7b
+# Source0-md5:	8d03759675907c1cacde0e9084bba751
 Patch0:		%{name}-home_etc.patch
 Patch1:		%{name}-info.patch
 Source1:	%{name}rc
