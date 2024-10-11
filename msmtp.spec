@@ -106,7 +106,6 @@ ln -s %{_bindir}/%{name} $RPM_BUILD_ROOT%{_sbindir}/sendmail
 %find_lang %{name}
 
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
-rm -f scripts/Makefile*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
