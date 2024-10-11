@@ -1,13 +1,13 @@
 Summary:	SMTP "plugin" for MUAs
 Summary(pl.UTF-8):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
-Version:	1.8.26
+Version:	1.8.27
 Release:	1
 License:	GPL v3+
 Group:		Networking/Utilities
 #Source0Download: https://marlam.de/msmtp/download/
 Source0:	https://marlam.de/msmtp/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	9fbc266d7420bde7cdd1f0b876abc369
+# Source0-md5:	f5ffb1c12cb98dafb5b002eed6944e4a
 Patch0:		%{name}-home_etc.patch
 Patch1:		%{name}-info.patch
 Source1:	%{name}rc
@@ -17,14 +17,14 @@ BuildRequires:	automake >= 1:1.11.1
 BuildRequires:	gettext-tools
 # with AI_IDN support (or libidn2-devel)
 BuildRequires:	glibc-devel >= 6:2.4
-BuildRequires:	gnutls-devel >= 3.4
+BuildRequires:	gnutls-devel >= 3.7.2
 BuildRequires:	gsasl-devel
 BuildRequires:	libsecret-devel
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo
 BuildRequires:	xz
-Requires:	gnutls-libs >= 3.4
+Requires:	gnutls-libs >= 3.7.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
