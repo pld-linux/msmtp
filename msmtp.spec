@@ -14,17 +14,18 @@ Source1:	%{name}rc
 URL:		https://marlam.de/msmtp/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11.1
-BuildRequires:	gettext-tools
+BuildRequires:	gettext-tools >= 0.21
 # with AI_IDN support (or libidn2-devel)
 BuildRequires:	glibc-devel >= 6:2.4
 BuildRequires:	gnutls-devel >= 3.7.2
-BuildRequires:	gsasl-devel
+BuildRequires:	gsasl-devel >= 2.1
 BuildRequires:	libsecret-devel
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo
 BuildRequires:	xz
 Requires:	gnutls-libs >= 3.7.2
+Requires:	gsasl >= 2.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
