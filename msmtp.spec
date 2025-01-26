@@ -1,3 +1,6 @@
+# Conditional build:
+%bcond_without	libsecret	# without libsecret
+
 Summary:	SMTP "plugin" for MUAs
 Summary(pl.UTF-8):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
@@ -19,7 +22,7 @@ BuildRequires:	gettext-tools >= 0.21
 BuildRequires:	glibc-devel >= 6:2.4
 BuildRequires:	gnutls-devel >= 3.7.2
 BuildRequires:	gsasl-devel >= 2.1
-BuildRequires:	libsecret-devel
+%{?with_libsecret:BuildRequires:	libsecret-devel}
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo
@@ -90,7 +93,7 @@ Dowiązania symboliczne msmtp do sendmaila.
 	--disable-silent-rules \
 	--with-libgsasl \
 	--with-libidn \
-	--with-libsecret \
+	%{?with_libsecret:--with-libsecret} \
 	--with-tls=gnutls
 %{__make}
 
