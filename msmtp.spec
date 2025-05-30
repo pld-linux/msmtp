@@ -85,10 +85,10 @@ Dowiązania symboliczne msmtp do sendmaila.
 
 %build
 %{__gettextize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoheader}
-%{__automake}
 %{__autoconf}
+%{__automake}
 %configure \
 	--disable-silent-rules \
 	--with-libgsasl \
