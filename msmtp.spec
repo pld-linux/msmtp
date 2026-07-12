@@ -13,6 +13,7 @@ Source0:	https://marlam.de/msmtp/releases/%{name}-%{version}.tar.xz
 # Source0-md5:	70901783900607b72299640e04511c91
 Patch0:		%{name}-home_etc.patch
 Patch1:		%{name}-info.patch
+Patch2:		%{name}-bool.patch
 Source1:	%{name}rc
 URL:		https://marlam.de/msmtp/
 BuildRequires:	autoconf >= 2.50
@@ -82,6 +83,7 @@ Dowiązania symboliczne msmtp do sendmaila.
 %setup -q
 %patch -P0 -p1
 %patch -P1 -p1
+%patch -P2 -p1
 
 %build
 %{__gettextize}
