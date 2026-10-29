@@ -1,11 +1,12 @@
 # Conditional build:
 %bcond_without	libsecret	# without libsecret
+%bcond_without	tests		# unit tests
 
 Summary:	SMTP "plugin" for MUAs
 Summary(pl.UTF-8):	"Wtyczka" SMTP dla klientów pocztowych (MUA)
 Name:		msmtp
 Version:	1.8.34
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Networking/Utilities
 #Source0Download: https://marlam.de/msmtp/download/
@@ -13,15 +14,17 @@ Source0:	https://marlam.de/msmtp/releases/%{name}-%{version}.tar.xz
 # Source0-md5:	ef99756bc8f278208666699ca0dab14b
 Patch0:		%{name}-home_etc.patch
 Patch1:		%{name}-info.patch
+Patch2:		%{name}-log-double-fclose.patch
 Source1:	%{name}rc
 URL:		https://marlam.de/msmtp/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11.1
 BuildRequires:	gettext-tools >= 0.21
-# with AI_IDN support (or libidn2-devel)
+# getaddrinfo() with AI_IDN support
 BuildRequires:	glibc-devel >= 6:2.4
 BuildRequires:	gnutls-devel >= 3.7.2
 BuildRequires:	gsasl-devel >= 2.1
+BuildRequires:	libidn2-devel
 %{?with_libsecret:BuildRequires:	libsecret-devel}
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
@@ -82,6 +85,7 @@ Dowiązania symboliczne msmtp do sendmaila.
 %setup -q
 %patch -P0 -p1
 %patch -P1 -p1
+%patch -P2 -p1
 
 %build
 %{__gettextize}
@@ -96,6 +100,10 @@ Dowiązania symboliczne msmtp do sendmaila.
 	%{?with_libsecret:--with-libsecret} \
 	--with-tls=gnutls
 %{__make}
+
+%if %{with tests}
+%{__make} check
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT

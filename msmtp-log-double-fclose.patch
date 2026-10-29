@@ -1,0 +1,14 @@
+# fclose() failure (e.g. logfile on a full disk) jumps to log_failure, which
+# fclose()s the same FILE again; upstream 7ca272615b25f32589dbd8a3ec0ae44f5eb730df
+diff --git a/src/msmtp.c b/src/msmtp.c
+index f9dd5b7..086e19f 100644
+--- a/src/msmtp.c
++++ b/src/msmtp.c
+@@ -2058,6 +2058,7 @@ void msmtp_log_to_file(const char *logfile, const char *logfile_time_format,
+     }
+     if (f != stdout && fclose(f) != 0)
+     {
++        f = NULL; /* prevent another fclose() attempt */
+         failure_reason = xstrdup(strerror(errno));
+         goto log_failure;
+     }
